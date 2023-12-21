@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des produits{% endblock %}
+
+{% block body %}
+    <h1>Liste des produits</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Catégorie</th>
+                <th>Sous-catégorie</th>
+                <th>Produit</th>
+                <th>Description</th>
+                <th>Photo</th>
+                <th>Prix</th>
+                <th>Unités de stock</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for produit in produits %}
+            <tr>
+                <td>{{ produit.id }}</td>
+                <td>{{ produit.rubriqueart }}</td>
+                <td>{{ produit.sousrubriqueart }}</td>
+                <td>{{ produit.libcourt }}</td>
+                <td>{{ produit.liblong }}</td>
+                <td><img src="/images/{{ produit.photo }}" class="card-img-top" alt="{{ produit.photo}}">
+</td>
+                <td>{{ produit.prixachat }}</td>
+                <td>{{ produit.quantite }}</td>
+                <td>
+                    <a href="{{ path('app_produit_crud_afficher', {'id': produit.id}) }}">Afficher</a> 
+                    <a href="{{ path('app_produit_crud_modifier', {'id': produit.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">Aucun n'enregistrement n'a été trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+<a href="{{ path('app_produit_crud_nouveau') }}"> <button type="submit" class="btn btn-danger btn-lg my-3"> Créer un nouveau  </button></a>
+{% endblock %}

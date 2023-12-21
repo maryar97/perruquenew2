@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commande{% endblock %}
+
+{% block body %}
+    <h1>Commande</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ commande.id }}</td>
+            </tr>
+            <tr>
+                <th>TransporteurNom</th>
+                <td>{{ commande.transporteurNom }}</td>
+            </tr>
+            <tr>
+                <th>TransporteurPrix</th>
+                <td>{{ commande.transporteurPrix }}</td>
+            </tr>
+            <tr>
+                <th>Livraison</th>
+                <td>{{ commande.livraison }}</td>
+            </tr>
+            <tr>
+                <th>IsPaid</th>
+                <td>{{ commande.isPaid ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Methode</th>
+                <td>{{ commande.methode }}</td>
+            </tr>
+            <tr>
+                <th>Reference</th>
+                <td>{{ commande.reference }}</td>
+            </tr>
+            <tr>
+                <th>StripeSessionId</th>
+                <td>{{ commande.stripeSessionId }}</td>
+            </tr>
+            <tr>
+                <th>PaypalCommandeId</th>
+                <td>{{ commande.paypalCommandeId }}</td>
+            </tr>
+            <tr>
+                <th>CreateAt</th>
+                <td>{{ commande.CreateAt ? commande.CreateAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Adr_fact</th>
+                <td>{{ commande.adrFact }}</td>
+            </tr>
+            <tr>
+                <th>Date_fact</th>
+                <td>{{ commande.dateFact ? commande.dateFact|date('Y-m-d H:i:s T') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Com_fact_id</th>
+                <td>{{ commande.comFactId }}</td>
+            </tr>
+            <tr>
+                <th>Facture_total_ttc</th>
+                <td>{{ commande.factureTotalTtc }}</td>
+            </tr>
+            <tr>
+                <th>Facture_total_ht</th>
+                <td>{{ commande.factureTotalHt }}</td>
+            </tr>
+            <tr>
+                <th>Facture_tva</th>
+                <td>{{ commande.factureTva }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_commande_crud_index') }}">back to list</a>
+
+    <a href="{{ path('app_commande_crud_edit', {'id': commande.id}) }}">edit</a>
+
+    {{ include('commande_crud/_delete_form.html.twig') }}
+{% endblock %}

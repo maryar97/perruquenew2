@@ -1,0 +1,95 @@
+<nav class="navbar navbar-expand-lg navbar-danger bg-danger">
+		<a class="navbar-brand" href="#">LYARHAIR</a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarColor03">
+			<ul class="navbar-nav me-auto">
+				<li class="nav-item">
+					<a class="nav-link" href="{{path('app_accueil')}}">ACCUEIL</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{{path('index')}}">CATEGORIES</a>
+				</li>
+				{# <li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="/souscategorie/2" role="button" aria-haspopup="true" aria-expanded="false">PERRUQUES</a>
+					<div class="dropdown-menu dark">
+						<a class="dropdown-item" href="/souscategorie/7">CARRÉ PLONGEANT</a>
+						<a class="dropdown-item" href="/souscategorie/8">PERRUQUE COURTE</a>
+						<a class="dropdown-item" href="/souscategorie/9">PERRUQUE 360°</a>
+						<a class="dropdown-item" href="/souscategorie/10">PERRUQUE DE COULEUR</a>
+						<a class="dropdown-item" href="/souscategorie/11">PERRUQUE FRANGE</a>
+						<a class="dropdown-item" href="/souscategorie/12">PERRUQUE SANS COLLE</a>
+					</div>
+				</li> #}
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">TISSAGES BRÉSILIEN</a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="/souscategorie/13">PACK 3 BUNDLE</a>
+						<a class="dropdown-item" href="/souscategorie/14">PACK 3 BUNDLE + CLOSURE
+						</a>
+						<a class="dropdown-item" href="/souscategorie/15">PACK 3 BUNDLE DÉGRADÉ + CLOSURE
+						</a>
+					</li>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">ACCESSOIRES</a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="/souscategorie/4">BONNETS</a>
+						<a class="dropdown-item" href="/souscategorie/5">COLORATION</a>
+						<a class="dropdown-item" href="/souscategorie/6">LISSEUR CHAUFFANT</a>
+					</li>
+						
+						
+						{% if app.user %}
+							{% if is_granted('ROLE_ADMIN') %}
+								<li class="nav-item">
+									<a class="nav-link" href="{{path('app_commande_crud_index')}}">Commandes</a>
+								</li>
+							{% endif %}
+						{% endif %}
+
+					<li class="nav-item">
+					<a class="nav-link" href="{{path('app_commande_mon_index')}}">Mes commandes</a>
+				</li>
+				</li>
+			</ul>
+
+			<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+				{% if app.user %}
+					{% if is_granted('ROLE_ADMIN') %}
+						<li class="nav-item">
+							<a class="nav-link" href="{{ path('admin_index')}}">
+								Administration
+							</a>
+						</li>
+
+					{% endif %}
+
+					<li class="nav-item">
+						<a class="navco" href="{{ path('app_logout')}}">
+							<button type="button" class="btn btn-light navco text-black">
+								Me déconnecter</button>
+						</a>
+					</li>
+					&nbsp;
+				{% else %}
+					<li class="nav-item">
+						<a class="navco" href="{{ path('app_login')}}">
+							<button type="button" class="btn btn-light navco text-black">
+								Me connecter</button>
+						</a>
+					</li> &nbsp;
+				{% endif %}
+				<ul class="navbar-nav ms-auto mb-lg-0">
+					<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+						<li class="nav-item">
+							<a class"navco" href="{{ path('cart_index')}}">
+								<button type="button" class="btn btn-light navco text-black">Panier ({{ app.session.get('cart') | length}})</button>
+							</a>
+						</li>
+						&nbsp;
+					</ul>
+				</div>
+			</div>
+		</nav>

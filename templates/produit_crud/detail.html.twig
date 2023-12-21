@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	
+	{{ produit.libcourt}}
+{% endblock %}
+
+{% block body %}
+	<main class="container">
+		<section class="row">
+			<div class="col-12">
+				<h1>
+					
+					{{ produit.libcourt}}
+				</h1>
+
+			</div>
+			<div class="col-6">
+				<div class="carousel-inner">
+
+					<img src="/images/{{ produit.photo }}" class="card-img-top" alt="{{ produit.photo}}">
+				</div>
+
+			</div>
+			<div class="col-6">
+				<p>
+					Catégorie :
+					{{ produit.categorie.nomcat }}
+				</p>
+				<p>
+					{{ produit.liblong }}
+				</p>
+
+				<p>
+					Prix :
+					{{ produit.prixachat }}€
+				</p>
+
+					<p>
+						Stock : 
+					{{ produit.quantite }}
+					</p>
+
+				{% if produit.quantite > 0 %}
+					<a href="{{path('cart_add', {id: produit.id}) }}" class="btn btn-danger">
+						Ajouter au panier
+					</a> 
+				{% endif %}
+				{% if produit.quantite < 0  %}
+					<p class="text-warning">
+						Temporairement en rupture de stock
+					</p>
+				{% endif %}
+
+			</div>
+
+	</section>
+</main>
+{% endblock %}
